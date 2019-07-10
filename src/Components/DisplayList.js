@@ -10,18 +10,22 @@ class DisplayList extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h1> Github Pull Requests</h1>
-        <div className="listsWrapper">
-          {this.state.PRLists.map((PRList, index) => {
-            return (
-              <li className="lists" key={index}>
+      <div className="listsWrapper">
+        {this.state.PRLists.map((PRList, index) => {
+          return (
+            <li className="lists" key={index}>
+              <a
+                className="ownerRepoName"
+                href="https://github.com/${PRList.repository.owner.login}/${PRList.repository.name}"
+              >
                 {PRList.repository.owner.login}/{PRList.repository.name}
-                <a href="">{PRList.title} </a>
-              </li>
-            );
-          })}
-        </div>
+              </a>
+              <a href="https://github.com/${PRList.repository.owner.login}/${PRList.repository.name}/pull/${PRList.number}">
+                {PRList.title}
+              </a>
+            </li>
+          );
+        })}
       </div>
     );
   }
