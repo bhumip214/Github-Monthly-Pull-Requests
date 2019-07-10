@@ -1,11 +1,9 @@
 import React from "react";
 
-export const PRLists = {
+const PRListsData = {
   data: {
     viewer: {
       login: "bhumip214",
-      email: "",
-      bio: "Lambda School Student FSW16",
       pullRequests: {
         nodes: [
           {
@@ -1124,3 +1122,5 @@ export const PRLists = {
     }
   }
 };
+
+export default PRListsData;

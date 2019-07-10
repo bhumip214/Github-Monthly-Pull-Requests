@@ -1,12 +1,30 @@
 import React from "react";
-import PRLists from "./PRLists";
+import PRListsData from "./PRLists";
 
-function DisplayList() {
-  return (
-    <div>
-      <h1> Pull Request Lists</h1>
-    </div>
-  );
+class DisplayList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      PRLists: PRListsData.data.viewer.pullRequests.nodes
+    };
+  }
+  render() {
+    return (
+      <div>
+        <h1> Github Pull Requests</h1>
+        <div className="listsWrapper">
+          {this.state.PRLists.map((PRList, index) => {
+            return (
+              <li className="lists" key={index}>
+                {PRList.repository.owner.login}/{PRList.repository.name}
+                <a href="">{PRList.title} </a>
+              </li>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default DisplayList;
