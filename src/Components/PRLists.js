@@ -1,6 +1,6 @@
 import React from "react";
 
-const PRListsData = {
+const pullRequestsData = {
   data: {
     viewer: {
       login: "bhumip214",
@@ -1129,4 +1129,4 @@ const PRListsData = {
   }
 };
 
-export default PRListsData;
+export default pullRequestsData;

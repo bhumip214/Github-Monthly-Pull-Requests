@@ -1,39 +1,41 @@
 import React from "react";
-import PRListsData from "./PRLists";
+import pullRequestsData from "./PRLists";
 
 class DisplayList extends React.Component {
   constructor() {
     super();
     this.state = {
-      PRLists: PRListsData.data.viewer.pullRequests.nodes,
-      Username: PRListsData.data.viewer.login
+      pullRequests: pullRequestsData.data.viewer.pullRequests.nodes,
+      username: pullRequestsData.data.viewer.login
     };
   }
   render() {
     return (
       <div className="listsWrapper">
-        {this.state.PRLists.map((PRList, index) => {
+        {this.state.pullRequests.map((pullRequest, index) => {
           return (
             <li className="lists" key={index}>
               <a
                 className="ownerRepoName"
-                href={`https://github.com/${PRList.repository.owner.login}/${
-                  PRList.repository.name
-                }`}
+                href={`https://github.com/${
+                  pullRequest.repository.owner.login
+                }/${pullRequest.repository.name}`}
               >
-                {PRList.repository.owner.login}/{PRList.repository.name}
+                {pullRequest.repository.owner.login}/
+                {pullRequest.repository.name}
               </a>
               <a
                 className="PRName"
-                href={`https://github.com/${PRList.repository.owner.login}/${
-                  PRList.repository.name
-                }/pull/${PRList.number}`}
+                href={`https://github.com/${
+                  pullRequest.repository.owner.login
+                }/${pullRequest.repository.name}/pull/${pullRequest.number}`}
               >
-                {PRList.title}
+                {pullRequest.title}
               </a>
               <div className="subtitle">
-                #{PRList.number} {new Date(PRList.createdAt).toDateString()} by{" "}
-                <a href="">{this.state.Username}</a>
+                #{pullRequest.number}{" "}
+                {new Date(pullRequest.createdAt).toDateString()} by{" "}
+                <a href="">{this.state.username}</a>
               </div>
             </li>
           );

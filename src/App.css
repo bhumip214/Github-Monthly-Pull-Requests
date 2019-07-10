@@ -21,7 +21,7 @@ header {
 }
 .lists {
   list-style-type: none;
-  padding: 16px 16px 16px 40px;
+  padding: 16px 40px 16px 40px;
   border-bottom: 1px solid #d1d5da;
 }
 .lists:last-child {
