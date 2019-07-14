@@ -1,6 +1,7 @@
 import React from "react";
 import pullRequestsData from "./PRLists";
 import { groupByMonth } from "./helper";
+import { fetchPullRequests } from "./api";
 
 class DisplayList extends React.Component {
   constructor() {
@@ -13,39 +14,19 @@ class DisplayList extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://api.github.com/graphql", {
-      method: "POST",
-      headers: {
-        Authorization: `bearer ${process.env.REACT_APP_GITHUB_API_TOKEN}`
-      },
-      body: JSON.stringify({
-        query: `{
-          viewer {
-            login
-            pullRequests(first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
-              nodes {
-                title
-                number
-                repository {
-                  owner {
-                    login
-                  }
-                }
-                createdAt
-              }
-            }
-          }
-        }`
-      })
-    })
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          pullRequests: json.data.viewer.pullRequests.nodes,
-          username: json.data.viewer.login,
-          months: groupByMonth(json.data.viewer.pullRequests.nodes)
-        });
+    fetchPullRequests().then(json => {
+      const nodes = json.data.viewer.pullRequests.edges.map((edge, index) => {
+        return edge.node;
       });
+
+      console.log(nodes);
+
+      this.setState({
+        pullRequests: nodes,
+        username: json.data.viewer.login,
+        months: groupByMonth(nodes)
+      });
+    });
   }
 
   render() {
