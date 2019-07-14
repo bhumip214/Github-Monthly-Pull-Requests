@@ -2,7 +2,7 @@ const graphqlQuery = (after = null) => {
   return `{
     viewer {
       login
-      pullRequests(after: ${after}, first: 100, orderBy: {field: CREATED_AT, direction: DESC}) {
+      pullRequests(after: ${after}, first: 100, orderBy: { field: CREATED_AT, direction: DESC }) {
         edges {
           cursor
           node {
@@ -62,6 +62,7 @@ export async function fetchPullRequests() {
     if (!resp) {
       resp = json;
     } else {
+      // update edges by merging previous and newly fetched edges
       resp.data.viewer.pullRequests.edges = [
         ...resp.data.viewer.pullRequests.edges,
         ...json.data.viewer.pullRequests.edges
