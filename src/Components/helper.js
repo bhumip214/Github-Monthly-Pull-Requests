@@ -4,7 +4,7 @@ function formatMonth(date) {
   const year = date.substr(0, 4);
   let month = "";
 
-  switch (date.substr(5, 7)) {
+  switch (date.substr(5, 2)) {
     case "01":
       month = "January";
       break;
@@ -57,7 +57,7 @@ PR = {
 }
 
 Input:
-lists = PR[]
+nodes = PR[]
 
 Output:
 [
@@ -68,8 +68,31 @@ Output:
 ]
  */
 
-export function groupByMonth(lists) {
-  const grouped = _.groupBy(lists, item => {
+/*
+// custom groupBy implementation...
+const resp = [];
+
+let prevMonth;
+
+nodes.forEach(node => {
+  const month = formatMonth(node.createdAt);
+
+  if (month !== prevMonth) {
+    resp.push({
+      month,
+      pullRequests: [node]
+    });
+  } else {
+    resp[resp.length - 1].pullRequests.push(node);
+  }
+
+  prevMonth = month;
+});
+
+return resp;
+*/
+export function groupByMonth(nodes) {
+  const grouped = _.groupBy(nodes, item => {
     return item.createdAt.substr(0, 7);
   });
 
