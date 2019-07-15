@@ -38,40 +38,40 @@ class DisplayList extends React.Component {
             return null;
           }
           return (
-            <div>
-              <h1 key={index} className="lists">
-                {month.month}
-              </h1>
-              {month.pullRequests.map((pullRequest, index) => {
-                return (
-                  <li className="lists" key={index}>
-                    <a
-                      className="ownerRepoName"
-                      href={`https://github.com/${
-                        pullRequest.repository.owner.login
-                      }/${pullRequest.repository.name}`}
-                    >
-                      {pullRequest.repository.owner.login}/
-                      {pullRequest.repository.name}
-                    </a>
-                    <a
-                      className="PRName"
-                      href={`https://github.com/${
-                        pullRequest.repository.owner.login
-                      }/${pullRequest.repository.name}/pull/${
-                        pullRequest.number
-                      }`}
-                    >
-                      {pullRequest.title}
-                    </a>
-                    <div className="subtitle">
-                      #{pullRequest.number}{" "}
-                      {new Date(pullRequest.createdAt).toDateString()} by{" "}
-                      <a href="">{this.state.username}</a>
-                    </div>
-                  </li>
-                );
-              })}
+            <div key={index}>
+              <h1 className="lists">{month.month}</h1>
+              <ul>
+                {month.pullRequests.map(pullRequest => {
+                  return (
+                    <li className="lists" key={pullRequest.id}>
+                      <a
+                        className="ownerRepoName"
+                        href={`https://github.com/${
+                          pullRequest.repository.owner.login
+                        }/${pullRequest.repository.name}`}
+                      >
+                        {pullRequest.repository.owner.login}/
+                        {pullRequest.repository.name}
+                      </a>
+                      <a
+                        className="PRName"
+                        href={`https://github.com/${
+                          pullRequest.repository.owner.login
+                        }/${pullRequest.repository.name}/pull/${
+                          pullRequest.number
+                        }`}
+                      >
+                        {pullRequest.title}
+                      </a>
+                      <div className="subtitle">
+                        #{pullRequest.number}{" "}
+                        {new Date(pullRequest.createdAt).toDateString()} by{" "}
+                        <a href="">{this.state.username}</a>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           );
         })}

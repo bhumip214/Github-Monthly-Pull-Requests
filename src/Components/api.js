@@ -6,6 +6,7 @@ const graphqlQuery = (after = null) => {
         edges {
           cursor
           node {
+            id
             title
             number
             repository {
