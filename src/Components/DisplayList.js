@@ -38,12 +38,12 @@ class DisplayList extends React.Component {
             return null;
           }
           return (
-            <div key={index}>
-              <h1 className="lists">{month.month}</h1>
+            <div className="month" key={index}>
+              <h1 className="title">{month.month}</h1>
               <ul>
                 {month.pullRequests.map(pullRequest => {
                   return (
-                    <li className="lists" key={pullRequest.id}>
+                    <li className="list-item" key={pullRequest.id}>
                       <a
                         className="ownerRepoName"
                         href={`https://github.com/${

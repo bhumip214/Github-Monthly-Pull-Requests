@@ -1,3 +1,8 @@
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 header {
   background-color: #24292e;
   color: #ffff;
@@ -10,7 +15,6 @@ header {
 }
 
 .listsWrapper {
-  border: 1px solid #d1d5da;
   max-width: 55%;
   margin: 0 auto;
   line-height: 20px;
@@ -19,16 +23,30 @@ header {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.lists {
+
+.month {
+  border: 1px solid #d1d5da;
+}
+
+.month:not(:last-child) {
+  border-bottom: none;
+}
+.month .title {
+  padding: 25px 40px 25px 40px;
+  margin: 0;
+  background-color: #f6f8fa;
+  border-bottom: 1px solid #d1d5da;
+}
+.list-item {
   list-style-type: none;
   padding: 16px 40px 16px 40px;
   border-bottom: 1px solid #d1d5da;
 }
-.lists:last-child {
+.list-item:last-child {
   border: none;
 }
 
-.lists:hover {
+.list-item:hover {
   background-color: #f6f8fa;
 }
 /* .ownerRepoName {
